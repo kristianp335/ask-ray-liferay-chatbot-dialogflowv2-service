@@ -1,0 +1,10 @@
+Bundle-Name: ask-ray-liferay-chatbot-dialogflowv2-service-api
+Bundle-SymbolicName: com.liferay.kris.dialogflow.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.kris.dialogflow.exception,\
+	com.liferay.kris.dialogflow.model,\
+	com.liferay.kris.dialogflow.service,\
+	com.liferay.kris.dialogflow.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../ask-ray-liferay-chatbot-dialogflowv2-service-service/service.xml
