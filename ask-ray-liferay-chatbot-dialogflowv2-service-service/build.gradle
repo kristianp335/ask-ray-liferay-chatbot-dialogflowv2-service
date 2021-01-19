@@ -1,11 +1,12 @@
 dependencies {
-	compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
+	/*compileOnly group: "com.liferay", name: "com.liferay.petra.lang"
 	compileOnly group: "com.liferay", name: "com.liferay.petra.string"
 	compileOnly group: "com.liferay", name: "com.liferay.portal.aop.api"
 	compileOnly group: "com.liferay.portal", name: "com.liferay.portal.kernel"
 	compileOnly group: "org.osgi", name: "org.osgi.annotation.versioning"
 	compileOnly group: "org.osgi", name: "org.osgi.core"
-	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"
+	compileOnly group: "org.osgi", name: "org.osgi.service.component.annotations"*/
+	compileOnly group: "com.liferay.portal", name: "release.portal.api", version: "7.3.5-ga6"
 	compileOnly project(":modules:ask-ray-liferay-chatbot-dialogflowv2-service:ask-ray-liferay-chatbot-dialogflowv2-service-api")
 }
 
@@ -14,3 +15,11 @@ buildService {
 }
 
 group = "com.liferay.kris.dialogflow"
+
+task('docker.deploy', type: Copy) {
+	group "custom"
+	dependsOn 'jar'
+	from "$buildDir/libs"
+	include "*.jar"
+	into "${custom_liferay_jar_deploy_dir}"
+}
