@@ -279,4 +279,7 @@ public interface ApiAiDataModel
 	 */
 	public void setSpeech(String speech);
 
+	@Override
+	public ApiAiData cloneWithOriginalValues();
+
 }

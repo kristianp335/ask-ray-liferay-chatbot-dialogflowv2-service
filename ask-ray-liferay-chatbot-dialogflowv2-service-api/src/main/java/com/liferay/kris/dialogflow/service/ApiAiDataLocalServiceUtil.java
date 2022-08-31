@@ -14,10 +14,16 @@
 
 package com.liferay.kris.dialogflow.service;
 
-import org.osgi.annotation.versioning.ProviderType;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.kris.dialogflow.model.ApiAiData;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for ApiAiData. This utility wraps
@@ -31,7 +37,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see ApiAiDataLocalService
  * @generated
  */
-@ProviderType
 public class ApiAiDataLocalServiceUtil {
 
 	/*
@@ -43,12 +48,14 @@ public class ApiAiDataLocalServiceUtil {
 	/**
 	 * Adds the api ai data to the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ApiAiDataLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param apiAiData the api ai data
 	 * @return the api ai data that was added
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData addApiAiData(
-		com.liferay.kris.dialogflow.model.ApiAiData apiAiData) {
-
+	public static ApiAiData addApiAiData(ApiAiData apiAiData) {
 		return getService().addApiAiData(apiAiData);
 	}
 
@@ -68,34 +75,47 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param apiAiDataId the primary key for the new api ai data
 	 * @return the new api ai data
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData createApiAiData(
-		long apiAiDataId) {
-
+	public static ApiAiData createApiAiData(long apiAiDataId) {
 		return getService().createApiAiData(apiAiDataId);
+	}
+
+	/**
+	 * @throws PortalException
+	 */
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
+
+		return getService().createPersistedModel(primaryKeyObj);
 	}
 
 	/**
 	 * Deletes the api ai data from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ApiAiDataLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param apiAiData the api ai data
 	 * @return the api ai data that was removed
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData deleteApiAiData(
-		com.liferay.kris.dialogflow.model.ApiAiData apiAiData) {
-
+	public static ApiAiData deleteApiAiData(ApiAiData apiAiData) {
 		return getService().deleteApiAiData(apiAiData);
 	}
 
 	/**
 	 * Deletes the api ai data with the primary key from the database. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ApiAiDataLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param apiAiDataId the primary key of the api ai data
 	 * @return the api ai data that was removed
 	 * @throws PortalException if a api ai data with the primary key could not be found
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData deleteApiAiData(
-			long apiAiDataId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static ApiAiData deleteApiAiData(long apiAiDataId)
+		throws PortalException {
 
 		return getService().deleteApiAiData(apiAiDataId);
 	}
@@ -103,17 +123,22 @@ public class ApiAiDataLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static <T> T dslQuery(DSLQuery dslQuery) {
+		return getService().dslQuery(dslQuery);
+	}
 
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
+
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -123,9 +148,7 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -133,7 +156,7 @@ public class ApiAiDataLocalServiceUtil {
 	 * Performs a dynamic query on the database and returns a range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -141,9 +164,8 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -152,7 +174,7 @@ public class ApiAiDataLocalServiceUtil {
 	 * Performs a dynamic query on the database and returns an ordered range of the matching rows.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>.
 	 * </p>
 	 *
 	 * @param dynamicQuery the dynamic query
@@ -161,10 +183,9 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -176,9 +197,7 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -190,15 +209,13 @@ public class ApiAiDataLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.kris.dialogflow.model.ApiAiData fetchApiAiData(
-		long apiAiDataId) {
-
+	public static ApiAiData fetchApiAiData(long apiAiDataId) {
 		return getService().fetchApiAiData(apiAiDataId);
 	}
 
@@ -209,8 +226,8 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param groupId the primary key of the group
 	 * @return the matching api ai data, or <code>null</code> if a matching api ai data could not be found
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData
-		fetchApiAiDataByUuidAndGroupId(String uuid, long groupId) {
+	public static ApiAiData fetchApiAiDataByUuidAndGroupId(
+		String uuid, long groupId) {
 
 		return getService().fetchApiAiDataByUuidAndGroupId(uuid, groupId);
 	}
@@ -228,16 +245,13 @@ public class ApiAiDataLocalServiceUtil {
 	 * @return the api ai data
 	 * @throws PortalException if a api ai data with the primary key could not be found
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData getApiAiData(
-			long apiAiDataId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static ApiAiData getApiAiData(long apiAiDataId)
+		throws PortalException {
 
 		return getService().getApiAiData(apiAiDataId);
 	}
 
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getApiAiDataByUserId(long userId) {
-
+	public static List<ApiAiData> getApiAiDataByUserId(long userId) {
 		return getService().getApiAiDataByUserId(userId);
 	}
 
@@ -249,9 +263,9 @@ public class ApiAiDataLocalServiceUtil {
 	 * @return the matching api ai data
 	 * @throws PortalException if a matching api ai data could not be found
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData
-			getApiAiDataByUuidAndGroupId(String uuid, long groupId)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static ApiAiData getApiAiDataByUuidAndGroupId(
+			String uuid, long groupId)
+		throws PortalException {
 
 		return getService().getApiAiDataByUuidAndGroupId(uuid, groupId);
 	}
@@ -260,16 +274,14 @@ public class ApiAiDataLocalServiceUtil {
 	 * Returns a range of all the api ai datas.
 	 *
 	 * <p>
-	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code>), then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>com.liferay.portal.kernel.dao.orm.QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>com.liferay.kris.dialogflow.model.impl.ApiAiDataModelImpl</code>.
 	 * </p>
 	 *
 	 * @param start the lower bound of the range of api ai datas
 	 * @param end the upper bound of the range of api ai datas (not inclusive)
 	 * @return the range of api ai datas
 	 */
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getApiAiDatas(int start, int end) {
-
+	public static List<ApiAiData> getApiAiDatas(int start, int end) {
 		return getService().getApiAiDatas(start, end);
 	}
 
@@ -280,8 +292,8 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param companyId the primary key of the company
 	 * @return the matching api ai datas, or an empty list if no matches were found
 	 */
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getApiAiDatasByUuidAndCompanyId(String uuid, long companyId) {
+	public static List<ApiAiData> getApiAiDatasByUuidAndCompanyId(
+		String uuid, long companyId) {
 
 		return getService().getApiAiDatasByUuidAndCompanyId(uuid, companyId);
 	}
@@ -296,12 +308,9 @@ public class ApiAiDataLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the range of matching api ai datas, or an empty list if no matches were found
 	 */
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getApiAiDatasByUuidAndCompanyId(
-			String uuid, long companyId, int start, int end,
-			com.liferay.portal.kernel.util.OrderByComparator
-				<com.liferay.kris.dialogflow.model.ApiAiData>
-					orderByComparator) {
+	public static List<ApiAiData> getApiAiDatasByUuidAndCompanyId(
+		String uuid, long companyId, int start, int end,
+		OrderByComparator<ApiAiData> orderByComparator) {
 
 		return getService().getApiAiDatasByUuidAndCompanyId(
 			uuid, companyId, start, end, orderByComparator);
@@ -340,25 +349,25 @@ public class ApiAiDataLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	/**
+	 * @throws PortalException
+	 */
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getRecentConversation(
-			com.liferay.portal.kernel.service.ServiceContext serviceContext,
-			int records) {
+	public static List<ApiAiData> getRecentConversation(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext,
+		int records) {
 
 		return getService().getRecentConversation(serviceContext, records);
 	}
 
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getRecentConversation(
-			com.liferay.portal.kernel.service.ServiceContext serviceContext,
-			int records, String sortOrder) {
+	public static List<ApiAiData> getRecentConversation(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext,
+		int records, String sortOrder) {
 
 		return getService().getRecentConversation(
 			serviceContext, records, sortOrder);
@@ -367,35 +376,21 @@ public class ApiAiDataLocalServiceUtil {
 	/**
 	 * Updates the api ai data in the database or adds it if it does not yet exist. Also notifies the appropriate model listeners.
 	 *
+	 * <p>
+	 * <strong>Important:</strong> Inspect ApiAiDataLocalServiceImpl for overloaded versions of the method. If provided, use these entry points to the API, as the implementation logic may require the additional parameters defined there.
+	 * </p>
+	 *
 	 * @param apiAiData the api ai data
 	 * @return the api ai data that was updated
 	 */
-	public static com.liferay.kris.dialogflow.model.ApiAiData updateApiAiData(
-		com.liferay.kris.dialogflow.model.ApiAiData apiAiData) {
-
+	public static ApiAiData updateApiAiData(ApiAiData apiAiData) {
 		return getService().updateApiAiData(apiAiData);
 	}
 
 	public static ApiAiDataLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<ApiAiDataLocalService, ApiAiDataLocalService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(ApiAiDataLocalService.class);
-
-		ServiceTracker<ApiAiDataLocalService, ApiAiDataLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<ApiAiDataLocalService, ApiAiDataLocalService>(
-						bundle.getBundleContext(), ApiAiDataLocalService.class,
-						null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile ApiAiDataLocalService _service;
 
 }

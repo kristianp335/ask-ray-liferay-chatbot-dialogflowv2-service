@@ -8,8 +8,8 @@ create table APIAI_ApiAiData (
 	createDate DATE null,
 	modifiedDate DATE null,
 	type_ VARCHAR(75) null,
-	result VARCHAR(75) null,
-	action VARCHAR(75) null,
-	fulfillment VARCHAR(75) null,
-	speech VARCHAR(75) null
+	result VARCHAR(2048) null,
+	action VARCHAR(2048) null,
+	fulfillment VARCHAR(2048) null,
+	speech VARCHAR(2048) null
 );

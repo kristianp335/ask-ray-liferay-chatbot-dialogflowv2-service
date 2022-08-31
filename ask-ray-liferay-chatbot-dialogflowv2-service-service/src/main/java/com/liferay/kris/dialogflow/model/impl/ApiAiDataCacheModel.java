@@ -26,29 +26,26 @@ import java.io.ObjectOutput;
 
 import java.util.Date;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The cache model class for representing ApiAiData in entity cache.
  *
  * @author Brian Wing Shun Chan
  * @generated
  */
-@ProviderType
 public class ApiAiDataCacheModel
 	implements CacheModel<ApiAiData>, Externalizable {
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public boolean equals(Object object) {
+		if (this == object) {
 			return true;
 		}
 
-		if (!(obj instanceof ApiAiDataCacheModel)) {
+		if (!(object instanceof ApiAiDataCacheModel)) {
 			return false;
 		}
 
-		ApiAiDataCacheModel apiAiDataCacheModel = (ApiAiDataCacheModel)obj;
+		ApiAiDataCacheModel apiAiDataCacheModel = (ApiAiDataCacheModel)object;
 
 		if (apiAiDataId == apiAiDataCacheModel.apiAiDataId) {
 			return true;

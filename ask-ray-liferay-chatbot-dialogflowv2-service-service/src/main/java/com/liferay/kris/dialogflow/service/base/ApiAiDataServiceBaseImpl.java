@@ -16,6 +16,7 @@ package com.liferay.kris.dialogflow.service.base;
 
 import com.liferay.kris.dialogflow.model.ApiAiData;
 import com.liferay.kris.dialogflow.service.ApiAiDataService;
+import com.liferay.kris.dialogflow.service.ApiAiDataServiceUtil;
 import com.liferay.kris.dialogflow.service.persistence.ApiAiDataPersistence;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -27,8 +28,11 @@ import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiServic
 import com.liferay.portal.kernel.service.BaseServiceImpl;
 import com.liferay.portal.kernel.util.PortalUtil;
 
+import java.lang.reflect.Field;
+
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -44,13 +48,18 @@ import org.osgi.service.component.annotations.Reference;
  */
 public abstract class ApiAiDataServiceBaseImpl
 	extends BaseServiceImpl
-	implements ApiAiDataService, AopService, IdentifiableOSGiService {
+	implements AopService, ApiAiDataService, IdentifiableOSGiService {
 
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>ApiAiDataService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.kris.dialogflow.service.ApiAiDataServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>ApiAiDataService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>ApiAiDataServiceUtil</code>.
 	 */
+	@Deactivate
+	protected void deactivate() {
+		_setServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -61,6 +70,8 @@ public abstract class ApiAiDataServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		apiAiDataService = (ApiAiDataService)aopProxy;
+
+		_setServiceUtilService(apiAiDataService);
 	}
 
 	/**
@@ -100,8 +111,22 @@ public abstract class ApiAiDataServiceBaseImpl
 
 			sqlUpdate.update();
 		}
-		catch (Exception e) {
-			throw new SystemException(e);
+		catch (Exception exception) {
+			throw new SystemException(exception);
+		}
+	}
+
+	private void _setServiceUtilService(ApiAiDataService apiAiDataService) {
+		try {
+			Field field = ApiAiDataServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, apiAiDataService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 
