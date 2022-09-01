@@ -14,10 +14,9 @@
 
 package com.liferay.kris.dialogflow.service;
 
-import org.osgi.annotation.versioning.ProviderType;
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.kris.dialogflow.model.ApiAiData;
+
+import java.util.List;
 
 /**
  * Provides the remote service utility for ApiAiData. This utility wraps
@@ -31,7 +30,6 @@ import org.osgi.util.tracker.ServiceTracker;
  * @see ApiAiDataService
  * @generated
  */
-@ProviderType
 public class ApiAiDataServiceUtil {
 
 	/*
@@ -58,31 +56,17 @@ public class ApiAiDataServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static java.util.List<com.liferay.kris.dialogflow.model.ApiAiData>
-		getRecentConversation(
-			com.liferay.portal.kernel.service.ServiceContext serviceContext,
-			int records) {
+	public static List<ApiAiData> getRecentConversation(
+		com.liferay.portal.kernel.service.ServiceContext serviceContext,
+		int records) {
 
 		return getService().getRecentConversation(serviceContext, records);
 	}
 
 	public static ApiAiDataService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<ApiAiDataService, ApiAiDataService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(ApiAiDataService.class);
-
-		ServiceTracker<ApiAiDataService, ApiAiDataService> serviceTracker =
-			new ServiceTracker<ApiAiDataService, ApiAiDataService>(
-				bundle.getBundleContext(), ApiAiDataService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile ApiAiDataService _service;
 
 }

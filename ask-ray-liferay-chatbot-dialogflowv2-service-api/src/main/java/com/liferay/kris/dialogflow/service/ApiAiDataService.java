@@ -50,7 +50,7 @@ public interface ApiAiDataService extends BaseService {
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this interface directly. Always use {@link ApiAiDataServiceUtil} to access the api ai data remote service. Add custom service methods to <code>com.liferay.kris.dialogflow.service.impl.ApiAiDataServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface.
+	 * Never modify this interface directly. Add custom service methods to <code>com.liferay.kris.dialogflow.service.impl.ApiAiDataServiceImpl</code> and rerun ServiceBuilder to automatically copy the method declarations to this interface. Consume the api ai data remote service via injection or a <code>org.osgi.util.tracker.ServiceTracker</code>. Use {@link ApiAiDataServiceUtil} if injection and service tracking are not available.
 	 */
 	public String addApiAiDataPersistence(
 		ServiceContext serviceContext, String query, String authtoken,

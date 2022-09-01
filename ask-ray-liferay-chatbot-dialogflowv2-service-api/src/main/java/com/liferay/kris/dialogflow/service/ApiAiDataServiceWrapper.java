@@ -16,8 +16,6 @@ package com.liferay.kris.dialogflow.service;
 
 import com.liferay.portal.kernel.service.ServiceWrapper;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * Provides a wrapper for {@link ApiAiDataService}.
  *
@@ -25,9 +23,12 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see ApiAiDataService
  * @generated
  */
-@ProviderType
 public class ApiAiDataServiceWrapper
 	implements ApiAiDataService, ServiceWrapper<ApiAiDataService> {
+
+	public ApiAiDataServiceWrapper() {
+		this(null);
+	}
 
 	public ApiAiDataServiceWrapper(ApiAiDataService apiAiDataService) {
 		_apiAiDataService = apiAiDataService;

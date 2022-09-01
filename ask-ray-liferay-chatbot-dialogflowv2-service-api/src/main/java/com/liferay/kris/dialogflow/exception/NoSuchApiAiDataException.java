@@ -13,14 +13,11 @@
  */
 package com.liferay.kris.dialogflow.exception;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 import com.liferay.portal.kernel.exception.NoSuchModelException;
 
 /**
  * @author Brian Wing Shun Chan
  */
-@ProviderType
 public class NoSuchApiAiDataException extends NoSuchModelException {
 
 	public NoSuchApiAiDataException() {
@@ -30,12 +27,12 @@ public class NoSuchApiAiDataException extends NoSuchModelException {
 		super(msg);
 	}
 
-	public NoSuchApiAiDataException(String msg, Throwable cause) {
-		super(msg, cause);
+	public NoSuchApiAiDataException(String msg, Throwable throwable) {
+		super(msg, throwable);
 	}
 
-	public NoSuchApiAiDataException(Throwable cause) {
-		super(cause);
+	public NoSuchApiAiDataException(Throwable throwable) {
+		super(throwable);
 	}
 
 }

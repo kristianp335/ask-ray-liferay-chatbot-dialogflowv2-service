@@ -1,6 +1,6 @@
-Bundle-Name: ask-ray-liferay-chatbot-dialogflowv2-service-service
+Bundle-Name: Liferay Sales Engineering Ask Ray Service
 Bundle-SymbolicName: com.liferay.kris.dialogflow.service
-Bundle-Version: 1.0.0
+Bundle-Version: 2.0.0
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -dsannotations-options: inherit

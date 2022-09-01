@@ -17,8 +17,6 @@ package com.liferay.kris.dialogflow.model.impl;
 import com.liferay.kris.dialogflow.model.ApiAiData;
 import com.liferay.kris.dialogflow.service.ApiAiDataLocalServiceUtil;
 
-import org.osgi.annotation.versioning.ProviderType;
-
 /**
  * The extended model base implementation for the ApiAiData service. Represents a row in the &quot;APIAI_ApiAiData&quot; database table, with each column mapped to a property of this class.
  *
@@ -31,7 +29,6 @@ import org.osgi.annotation.versioning.ProviderType;
  * @see ApiAiData
  * @generated
  */
-@ProviderType
 public abstract class ApiAiDataBaseImpl
 	extends ApiAiDataModelImpl implements ApiAiData {
 
