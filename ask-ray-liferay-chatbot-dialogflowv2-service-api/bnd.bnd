@@ -1,6 +1,6 @@
 Bundle-Name: Liferay Sales Engineering Ask Ray Api
 Bundle-SymbolicName: com.liferay.kris.dialogflow.api
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.1
 Export-Package:\
 	com.liferay.kris.dialogflow.exception,\
 	com.liferay.kris.dialogflow.model,\
@@ -8,3 +8,5 @@ Export-Package:\
 	com.liferay.kris.dialogflow.service.persistence
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../ask-ray-liferay-chatbot-dialogflowv2-service-service/service.xml
+-consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
