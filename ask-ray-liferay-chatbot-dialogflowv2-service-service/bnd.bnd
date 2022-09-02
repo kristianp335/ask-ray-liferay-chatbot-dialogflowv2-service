@@ -1,6 +1,8 @@
 Bundle-Name: Liferay Sales Engineering Ask Ray Service
 Bundle-SymbolicName: com.liferay.kris.dialogflow.service
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.1
 Liferay-Require-SchemaVersion: 1.0.0
 Liferay-Service: true
 -dsannotations-options: inherit
+-consumer-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
+-provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
